@@ -1,0 +1,95 @@
+NAME
+    Exception::NoException - An exception object that's always false.
+
+VERSION
+    Version 0.01
+
+SYNOPSIS
+    Throw non-exception exceptions when you're using die() for flow control
+    and want $@ to appear to be false/empty.
+
+      use Exception::NoException;
+      eval {
+        die Exception::NoException->new;
+      };
+      die $@ if $@;
+
+    This is most useful when using File::Find"::find" or similar
+    callback-using functions. You can wrap your call in an eval and stop
+    execution by throwing a non-error. When you look at $@ to see if there's
+    a problem, you won't find any.
+
+METHODS
+    "Exception::NoException-"new>
+        This method takes no arguments and returns a new
+        Exception::NoException object. This object overloads all available
+        operators. Whenever an overloaded function is used a false value is
+        returned and $@ is cleared.
+
+    "Exception::NoException-"AUTOLOAD>
+    "$obj-"AUTOLOAD>
+        This uses autoload to always return false when called for any
+        method.
+
+    "$obj-"false>
+        Clears $@ and returns a false value.
+
+EXAMPLES
+    File::Find"::find"
+         use File::Find;
+         use Exception::NoException;
+
+         eval {
+             find( sub {
+                 if ( $File::Find::name =~ /something/ ) {
+                     # do something with the file
+                     die Exception::NoException->new;
+                 }
+             } );
+         };
+         die $@ if $@;
+
+CAVEATS
+    ref() and blessed() will still return true for these objects. I'm
+    considering using the 0 and/or \0 packages for this.
+
+AUTHOR
+    Joshua ben Jore, "<jjore at cpan.org>"
+
+BUGS
+    Please report any bugs or feature requests to "bug-exception-noexception
+    at rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Exception-NoException>.
+    I will be notified, and then you'll automatically be notified of
+    progress on your bug as I make changes.
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc Exception::NoException
+
+    You can also look for information at:
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/Exception-NoException>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/Exception-NoException>
+
+    *   RT: CPAN's request tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Exception-NoException>
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/Exception-NoException>
+
+ACKNOWLEDGEMENTS
+COPYRIGHT & LICENSE
+    Copyright 2006 Joshua ben Jore, all rights reserved.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
