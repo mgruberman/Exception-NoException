@@ -1,10 +1,6 @@
+## no critic (RcsKeywords,PodSections,PodAtEnd,UseWarnings)
 package Exception::NoException;
 
-# $Revision$
-# $Date$
-# $Source$
-
-use warnings;
 use strict;
 
 =head1 NAME
@@ -13,11 +9,12 @@ Exception::NoException - An exception object that's always false.
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+use vars '$VERSION';    ## no critic InterpolationOfMetachars
+$VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -50,8 +47,9 @@ returned and $@ is cleared.
 
 use overload;
 use overload(
-    map { $_ => \&false }
-        map { split ' ' } values %overload::ops
+    map { $_ => \&_false }
+        map { split ' ' }    ## no critic EmptyQuotes
+        values %overload::ops    ## no critic PackageVars
 );
 
 sub new {
@@ -64,34 +62,27 @@ sub new {
 
 =item C<$obj->AUTOLOAD>
 
-This uses autoload to always return false when called for any method.
+This uses autoload to always return &_false when called for any method.
 
 =cut
 
-no warnings 'once';    ## no critic warnings
-*AUTOLOAD = \&false;
+{
+    no warnings 'once';    ## no critic PunctuationVars
+    *AUTOLOAD = \&_false;
+}
 
-=item C<$obj->false>
+=item C<$obj->_false>
 
 Clears $@ and returns a false value.
 
 =cut
 
-sub false {
-
-    # unset $@
+sub _false {
     eval { };
 
-    if (wantarray) {
-
-        # empty list
-        return;
-    }
-    else {
-
-        # PL_sv_no
-        return !!0;
-    }
+    return wantarray
+        ? ()
+        : !!0;
 }
 
 =back
@@ -164,6 +155,27 @@ L<http://search.cpan.org/dist/Exception-NoException>
 
 =head1 ACKNOWLEDGEMENTS
 
+Yitzchak Scott-Thoennes came up with a problem where an exception
+object used an eval block during the C<bool> conversion from
+L<overload>. The following snippet caused him hours of grief and it
+inspired me to come up with an object where that effect was actually
+desired. It also happens to solve a common problem with loops that use
+callbacks.
+
+ # Yitzchak's problem:
+ eval {
+     die SomeObject->new;
+ };
+ if ( $@ ) {
+     # now $@ is empty.
+ }
+ package SomeObject;
+ use overload bool => sub { eval { } };
+ sub new { bless [], shift }
+
+To solve Yitzchak's problem, copy $@ ala C<my $e = $@> before
+examining it.
+
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2006 Joshua ben Jore, all rights reserved.
@@ -173,4 +185,7 @@ under the same terms as Perl itself.
 
 =cut
 
-1;    # End of Exception::NoException
+## no critic EndWithOne
+
+# Quote blatantly copied from Michael Poe's errantstory.com
+'The Adventures Of Kung-Fu Jesus and His Amazing Giant Robot';

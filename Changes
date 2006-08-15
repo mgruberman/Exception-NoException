@@ -3,3 +3,8 @@ Revision history for Exception-NoException
 0.01    2006-08-14
         First version, released on an unsuspecting world.
 
+0.02    2006-08-14
+        * Added SIGNATURE
+        * More specific Perl::Critic markings
+        * Rude quote
+        * false() -> _false()
