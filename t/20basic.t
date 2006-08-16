@@ -1,3 +1,5 @@
+#!perl -T
+# $Id: /Exception-NoException/trunk/t/20basic.t 55 2006-08-16T21:29:24.508066Z josh  $
 use Test::More tests => 3;
 use Exception::NoException;
 

@@ -1,20 +1,38 @@
-## no critic (RcsKeywords,PodSections,PodAtEnd,UseWarnings)
+## no critic (UseWarnings,PodSections)
+# $Id: /Exception-NoException/trunk/lib/Exception/NoException.pm 57 2006-08-16T22:53:33.844561Z josh  $
 package Exception::NoException;
 
 use strict;
 
+use vars '$VERSION';    ## no critic InterpolationOfMetachars
+$VERSION = '0.04';
+
+require Exception::NoException::_obj;
+
+sub new {
+    my $class = shift @_;
+    $class .= '::_obj';
+    my $obj;
+
+    return bless \$obj, $class;
+}
+
+sub get_no_exception {
+    my $class = shift @_;
+    $class .= '::_obj';
+
+    return $class->can('_no_exception');
+}
+
+## no critic EndWithOne
+# Quote blatantly copied from Michael Poe's errantstory.com
+'The Adventures Of Kung-Fu Jesus and His Amazing Giant Robot';
+
+__END__
+
 =head1 NAME
 
 Exception::NoException - An exception object that's always false.
-
-=head1 VERSION
-
-Version 0.02
-
-=cut
-
-use vars '$VERSION';    ## no critic InterpolationOfMetachars
-$VERSION = '0.02';
 
 =head1 SYNOPSIS
 
@@ -36,54 +54,16 @@ there's a problem, you won't find any.
 
 =over
 
-=item C<Exception::NoException->new>
+=item C<< Exception::NoException->new >>
 
-This method takes no arguments and returns a new
-Exception::NoException object. This object overloads all available
-operators. Whenever an overloaded function is used a false value is
-returned and $@ is cleared.
+This method takes no arguments and returns a new C<<
+Exception::NoException::_obj >> object. This object overloads all
+available operators. Whenever an overloaded function is used a false
+value is returned and $@ is cleared.
 
-=cut
+=item C<< Exception::NoException->get_no_exception >>
 
-use overload;
-use overload(
-    map { $_ => \&_false }
-        map { split ' ' }    ## no critic EmptyQuotes
-        values %overload::ops    ## no critic PackageVars
-);
-
-sub new {
-    my $class = shift;
-    my $obj;
-    return bless \$obj, $class;
-}
-
-=item C<Exception::NoException->AUTOLOAD>
-
-=item C<$obj->AUTOLOAD>
-
-This uses autoload to always return &_false when called for any method.
-
-=cut
-
-{
-    no warnings 'once';    ## no critic PunctuationVars
-    *AUTOLOAD = \&_false;
-}
-
-=item C<$obj->_false>
-
-Clears $@ and returns a false value.
-
-=cut
-
-sub _false {
-    eval { };
-
-    return wantarray
-        ? ()
-        : !!0;
-}
+XXX Docs go here.
 
 =back
 
@@ -108,16 +88,24 @@ sub _false {
 
 =back
 
-=head1 CAVEATS
+=head1 SUBCLASSING
 
-ref() and blessed() will still return true for these objects. I'm
-considering using the 0 and/or \0 packages for this.
+XXX Docs go here.
 
 =head1 AUTHOR
 
 Joshua ben Jore, C<< <jjore at cpan.org> >>
 
 =head1 BUGS
+
+=over
+
+=item *
+
+ref() and blessed() will still return true for these objects. I'm
+considering using the 0 and/or \0 packages for this.
+
+=back
 
 Please report any bugs or feature requests to
 C<bug-exception-noexception at rt.cpan.org>, or through the web interface at
@@ -182,10 +170,3 @@ Copyright 2006 Joshua ben Jore, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
-
-=cut
-
-## no critic EndWithOne
-
-# Quote blatantly copied from Michael Poe's errantstory.com
-'The Adventures Of Kung-Fu Jesus and His Amazing Giant Robot';

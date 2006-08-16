@@ -1,5 +1,10 @@
 Revision history for Exception-NoException
 
+0.04 - Wed Aug 16 17:58:05 2006
+
+
+
+
 0.01    2006-08-14
         First version, released on an unsuspecting world.
 
@@ -8,3 +13,8 @@ Revision history for Exception-NoException
         * More specific Perl::Critic markings
         * Rude quote
         * false() -> _false()
+
+0.03    2006-08-16
+        * Moved implementation out to _obj.pm
+        * More tests
+        * Perl::Critic safe
