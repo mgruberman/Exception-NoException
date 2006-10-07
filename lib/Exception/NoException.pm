@@ -1,11 +1,11 @@
 ## no critic (UseWarnings,PodSections)
-# $Id: /Exception-NoException/trunk/lib/Exception/NoException.pm 57 2006-08-16T22:53:33.844561Z josh  $
+# $Id: /Exception-NoException/trunk/lib/Exception/NoException.pm 187 2006-10-07T16:27:35.885450Z josh  $
 package Exception::NoException;
 
 use strict;
 
 use vars '$VERSION';    ## no critic InterpolationOfMetachars
-$VERSION = '0.04';
+$VERSION = '0.05';
 
 require Exception::NoException::_obj;
 

@@ -1,5 +1,5 @@
 #!perl
-# $Id: /Exception-NoException/trunk/t/05critic.t 56 2006-08-16T22:53:12.587740Z josh  $
+# $Id: /Exception-NoException/trunk/t/05critic.t 188 2006-10-07T16:28:46.718930Z josh  $
 use Test::More;
 
 if ( not $ENV{AUTHOR_TESTS} ) {
@@ -7,6 +7,6 @@ if ( not $ENV{AUTHOR_TESTS} ) {
 }
 else {
     require Test::Perl::Critic;
-    Test::Perl::Critic->import( -severity => 1 );
+    Test::Perl::Critic->import( -severity => 3 );
     all_critic_ok();
 }

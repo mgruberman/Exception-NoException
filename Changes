@@ -18,3 +18,9 @@ Revision history for Exception-NoException
         * Moved implementation out to _obj.pm
         * More tests
         * Perl::Critic safe
+
+0.04   Uh...?
+
+0.05    2006-10-07
+        Removed SIGNATURE.
+        Changed Perl::Critic severity to 3 from 1.
