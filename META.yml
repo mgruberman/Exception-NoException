@@ -1,11 +1,15 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         Exception-NoException
-version:      0.05
-version_from: lib/Exception/NoException.pm
-installdirs:  site
-requires:
+--- #YAML:1.0
+name:                Exception-NoException
+version:             0.06
+abstract:            An exception object that's always false.
+license:             ~
+generated_by:        ExtUtils::MakeMaker version 6.31
+distribution_type:   module
+requires:     
     Test::More:                    0
-
-distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.30
+    UNIVERSAL::ref:                0
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.2.html
+    version: 1.2
+author:
+    - Joshua ben Jore <jjore@cpan.org>

@@ -1,5 +1,5 @@
 ## no critic (UseWarnings)
-# $Id: /Exception-NoException/trunk/Makefile.PL 55 2006-08-16T21:29:24.508066Z josh  $
+# $Id: /src/Exception-NoException/trunk/Makefile.PL 168 2006-08-16T21:29:24.508066Z josh  $
 use strict;
 use ExtUtils::MakeMaker;
 
@@ -9,7 +9,7 @@ WriteMakefile(
     VERSION_FROM  => 'lib/Exception/NoException.pm',
     ABSTRACT_FROM => 'lib/Exception/NoException.pm',
     PL_FILES      => {},
-    PREREQ_PM     => { 'Test::More' => 0, },
+    PREREQ_PM     => { 'Test::More' => 0, 'UNIVERSAL::ref' => 0 },
     dist          => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Exception-NoException-*' },
 );

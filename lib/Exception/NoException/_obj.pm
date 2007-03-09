@@ -1,5 +1,5 @@
 ## no critic Warnings
-# $Id: /Exception-NoException/trunk/lib/Exception/NoException/_obj.pm 53 2006-08-16T21:22:18.048528Z josh  $
+# $Id: /src/Exception-NoException/trunk/lib/Exception/NoException/_obj.pm 166 2006-08-16T21:22:18.048528Z josh  $
 
 package Exception::NoException::_obj;
 use strict;
@@ -7,17 +7,28 @@ use vars '$VERSION';    ## no critic Interpolation
 $VERSION = '0.01';
 
 # Provide ->get_no_exception
-require Exception::NoException;
+use Exception::NoException;
+
+# Pretend to be an empty scalar.
+use UNIVERSAL::ref;
+sub ref {''}
+
+#use UNIVERSAL::ref;
+#sub ref {''}
 
 # Compile it and load %overload::ops
-require overload;
+use overload ();
 
 # Overload all operations
-overload->import(
+my %h =
     map { $_ => Exception::NoException->get_no_exception }
-        map { split ' ' }    ## no critic EmptyQuotes
-        values %overload::ops    ## no critic PackageVars
-);
+    map { split ' ' }    ## no critic EmptyQuotes
+    values %overload::ops    ## no critic PackageVars
+    ;
+
+#use Data::Dumper;
+#print Dumper( \%h );
+overload->import(%h);
 
 *AUTOLOAD = Exception::NoException->get_no_exception;
 

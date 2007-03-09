@@ -1,5 +1,5 @@
 #!perl
-# $Id: /Exception-NoException/trunk/t/05critic.t 188 2006-10-07T16:28:46.718930Z josh  $
+# $Id: /src/Exception-NoException/trunk/t/05critic.t 301 2006-10-07T16:28:46.718930Z josh  $
 use Test::More;
 
 if ( not $ENV{AUTHOR_TESTS} ) {

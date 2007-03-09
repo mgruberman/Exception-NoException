@@ -1,5 +1,5 @@
-#!perl -T
-# $Id: /Exception-NoException/trunk/t/20basic.t 55 2006-08-16T21:29:24.508066Z josh  $
+#!perl
+# $Id: /src/Exception-NoException/trunk/t/20basic.t 168 2006-08-16T21:29:24.508066Z josh  $
 use Test::More tests => 3;
 use Exception::NoException;
 
@@ -8,7 +8,9 @@ eval {
     die Exception::NoException->new;
     $did_not_die = 1;
 };
+
 my $e = $@;
-is( $@, '', "No exception" );
-is( $e, '', "No exception" );
+
+is( $e,           '', "No exception" );
+is( ref($e),      '', 'No exception' );
 is( $did_not_die, '', 'Died' );

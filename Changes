@@ -1,26 +1,25 @@
 Revision history for Exception-NoException
 
-0.04 - Wed Aug 16 17:58:05 2006
+0.01:
+   - First version, released on an unsuspecting world.
 
+0.02:
+   - Added SIGNATURE
+   - More specific Perl::Critic markings
+   - Rude quote
+   - false() -> _false()
 
+0.03:
+   - Moved implementation out to _obj.pm
+   - More tests
+   - Perl::Critic safe
 
+0.04:
+   - Uh...?
 
-0.01    2006-08-14
-        First version, released on an unsuspecting world.
+0.05:
+   - Removed SIGNATURE.
+   - Changed Perl::Critic severity to 3 from 1.
 
-0.02    2006-08-14
-        * Added SIGNATURE
-        * More specific Perl::Critic markings
-        * Rude quote
-        * false() -> _false()
-
-0.03    2006-08-16
-        * Moved implementation out to _obj.pm
-        * More tests
-        * Perl::Critic safe
-
-0.04   Uh...?
-
-0.05    2006-10-07
-        Removed SIGNATURE.
-        Changed Perl::Critic severity to 3 from 1.
+0.06:
+   - Use UNIVERSAL::ref to pretend to not be an object.
