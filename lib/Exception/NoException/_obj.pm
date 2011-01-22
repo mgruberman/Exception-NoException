@@ -65,6 +65,10 @@ methods with the same.
 
 =over
 
+=item C<< $obj->ref >>
+
+Returns an empty string.
+
 =item C<< $obj->_no_exception >>
 
 This is the default "false"/"no exception" function.

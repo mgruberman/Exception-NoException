@@ -26,4 +26,4 @@ Revision history for Exception-NoException
 
 ...:
    - Build with Dist::Zilla
-
+   - Document the ->ref method
