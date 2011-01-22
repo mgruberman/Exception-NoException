@@ -23,3 +23,7 @@ Revision history for Exception-NoException
 
 0.06:
    - Use UNIVERSAL::ref to pretend to not be an object.
+
+...:
+   - Build with Dist::Zilla
+
