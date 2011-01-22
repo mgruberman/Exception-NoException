@@ -33,10 +33,6 @@ overload->import(%h);
 *AUTOLOAD = Exception::NoException->get_no_exception;
 
 sub _no_exception {
-
-    # Clear $@
-    eval { };
-
     # Return false
     return wantarray
         ? ()

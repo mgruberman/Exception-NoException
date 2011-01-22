@@ -27,3 +27,4 @@ Revision history for Exception-NoException
 ...:
    - Build with Dist::Zilla
    - Document the ->ref method
+   - Don't clear $@ in side-effects
