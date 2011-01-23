@@ -64,8 +64,6 @@ use overload
     '*{}' => sub { '' },
 ;
 
-sub AUTOLOAD {}
-
 q[ Hey, what does this switch labeled 'Pulsating Ejector' do?
 
    I don't know... I've always been too afraid to find out ];
@@ -82,10 +80,6 @@ This object acts as if it were an empty string.
 =item $obj-E<gt>ref
 
 Returns C<"">.
-
-=item C<< $obj->AUTOLOAD >>
-
-This object autoloads everything as calls to C<< ->no_exception >>.
 
 =back
 

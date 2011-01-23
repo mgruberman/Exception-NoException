@@ -30,3 +30,4 @@ Revision history for Exception-NoException
    - Don't clear $@ in side-effects
    - Test overloaded conversion and '' equality
    - Comprehensive overloading RT #57874
+   - Remove stub AUTOLOAD
