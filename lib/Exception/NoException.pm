@@ -1,36 +1,25 @@
-## no critic (UseWarnings,PodSections)
-# $Id: /src/Exception-NoException/trunk/lib/Exception/NoException.pm 300 2006-10-07T16:27:35.885450Z josh  $
 package Exception::NoException;
+# ABSTRACT: An exception object that's always false
 
 use strict;
 
-use vars '$VERSION';    ## no critic InterpolationOfMetachars
-$VERSION = '0.06';
+our $VERSION = '0.06';
 
 require Exception::NoException::_obj;
 
 sub new {
-    my $class = shift @_;
-    $class .= '::_obj';
     my $obj;
-
-    return bless \$obj, $class;
+    return bless \$obj, "$_[0]::_obj";
 }
 
-## no critic EndWithOne
-# Quote blatantly copied from Michael Poe's errantstory.com
 'The Adventures Of Kung-Fu Jesus and His Amazing Giant Robot';
 
 __END__
 
-=head1 NAME
-
-Exception::NoException - An exception object that's always false.
-
 =head1 SYNOPSIS
 
 Throw non-exception exceptions when you're using die() for flow
-control and want $@ to appear to be false/empty.
+control and want C<$@> to appear to be false/empty.
 
   use Exception::NoException;
   eval {
@@ -47,12 +36,14 @@ there's a problem, you won't find any.
 
 =over
 
-=item C<< Exception::NoException->new >>
+=item Exception::NoException-E<gt>new
 
-This method takes no arguments and returns a new C<<
-Exception::NoException::_obj >> object. This object overloads all
-available operators. Whenever an overloaded function is used a false
-value is returned and $@ is cleared.
+This method takes no arguments and returns a new object that acts like
+an empty string C<"">.
+
+=item ref
+
+Overloads the built-in function C<ref> and returns C<"">.
 
 =back
 
@@ -77,22 +68,17 @@ value is returned and $@ is cleared.
 
 =back
 
-=head1 SUBCLASSING
-
-XXX Docs go here.
-
 =head1 AUTHOR
 
-Joshua ben Jore, C<< <jjore at cpan.org> >>
+Josh Jore, E<lt>jjore at cpan.orgE<gt>
 
 =head1 BUGS
 
 =over
 
-=item *
+=item
 
-ref() and blessed() will still return true for these objects. I'm
-considering using the 0 and/or \0 packages for this.
+blessed() will still return true.
 
 =back
 
@@ -110,7 +96,7 @@ You can find documentation for this module with the perldoc command.
 
 You can also look for information at:
 
-=over 4
+=over
 
 =item * AnnoCPAN: Annotated CPAN documentation
 
@@ -155,7 +141,7 @@ examining it.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2006 Joshua ben Jore, all rights reserved.
+Copyright 2011 Josh Jore, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
