@@ -29,3 +29,4 @@ Revision history for Exception-NoException
    - Document the ->ref method
    - Don't clear $@ in side-effects
    - Test overloaded conversion and '' equality
+   - Comprehensive overloading RT #57874

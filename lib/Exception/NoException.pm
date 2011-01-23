@@ -17,13 +17,6 @@ sub new {
     return bless \$obj, $class;
 }
 
-sub get_no_exception {
-    my $class = shift @_;
-    $class .= '::_obj';
-
-    return $class->can('_no_exception');
-}
-
 ## no critic EndWithOne
 # Quote blatantly copied from Michael Poe's errantstory.com
 'The Adventures Of Kung-Fu Jesus and His Amazing Giant Robot';
@@ -60,10 +53,6 @@ This method takes no arguments and returns a new C<<
 Exception::NoException::_obj >> object. This object overloads all
 available operators. Whenever an overloaded function is used a false
 value is returned and $@ is cleared.
-
-=item C<< Exception::NoException->get_no_exception >>
-
-XXX Docs go here.
 
 =back
 
