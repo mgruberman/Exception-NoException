@@ -2,8 +2,6 @@ package Exception::NoException::_obj;
 # ABSTRACT: Implementation for Exception::NoException object
 use strict;
 
-our $VERSION = '0.01';
-
 # Pretend to be an empty scalar.
 use UNIVERSAL::ref;
 sub ref {''}

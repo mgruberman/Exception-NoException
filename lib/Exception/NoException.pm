@@ -3,8 +3,6 @@ package Exception::NoException;
 
 use strict;
 
-our $VERSION = '0.06';
-
 require Exception::NoException::_obj;
 
 sub new {
